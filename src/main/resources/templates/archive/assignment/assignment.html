@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제 자료실</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style-1.css" th:href="@{/css/style-1.css}">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+    <!--jweonju academy source code  -->
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}">
+    <script>
+        function logout(){
+        let f = document.createElement('form');
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', '/logout');
+        document.body.appendChild(f);
+        f.submit();
+        }
+    </script>
+    <style>
+        .a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header class="header">
+
+    <a href="#" th:href=@{/} class="logo"> <i class="fa-solid fa-church"></i> 두란노성경신학연구원 </a>
+
+    <nav class="navbar">
+        <div id="nav-close" class="fas fa-times"></div>
+        <a href="#home" th:href="@{/#home}"><b>Home</b></a>
+        <a href="#about" th:href="@{/#about}"><b>About</b></a>
+        <a href="#packages" th:href="@{/#packages}"><b>Video</b></a>
+        <a href="#shop" th:href="@{/#shop}"><b>두란노소식</b></a>
+        <a href="#reviews" th:href="@{/#reviews}"><b>공지사항</b></a>
+        <a onclick="logout()" class="a"><b>로그아웃</b></a>
+    </nav>
+
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <!-- <a href="#" class="fas fa-shopping-cart"></a> -->
+        <div id="search-btn" class="fas fa-search"></div>
+    </div>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- search form  -->
+
+<div class="search-form">
+
+    <div id="close-search" class="fas fa-times"></div>
+
+    <form action="">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+</div>
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong th:text="${ordinal} + '기 과제 파일'">12기 과제 파일</strong>
+            <p>과제 파일을 다운로드 하실 수 있습니다.</p>
+        </div>
+        <div class="board_list_wrap">
+            <div class="board_list">
+                <div class="top">
+                    <div class="num">번호</div>
+                    <div class="title">제목</div>
+                    <div class="writer">작성일</div>
+                    <div class="date">다운로드</div>
+                    <!-- <div class="count">글쓴이</div> -->
+                </div>
+                <div th:each="batch, batchStat : ${batchList}">
+                    <div class="num" th:text="${batchStat.size} - ${batchStat.index} - (${pagination.pageSize} - ${remainder}) + (${totalPageCnt} - ${currentPage}) * 10">8</div>
+                    <div class="title" th:if="${roleType == 'admin'}"><a th:text="${batch.title}" th:href="@{/assignment/{assignmentId}?ordinal={ordinal} (assignmentId = ${batch.id}, ordinal = ${ordinal})}">13 (2-68) 믿음은 관계 인생도 관계다</a></div>
+                    <div class="title" th:if="${roleType == 'user'}"><a th:text="${batch.title}">13 (2-68) 믿음은 관계 인생도 관계다</a></div>
+                    <div class="writer"><a th:text="${batch.localDate}">2023.1.23</a></div>
+                    <a id="download-button" th:href="@{/archive/assignment/assignment_} + ${ordinal} + 'th/' + ${batch.fileName}" class="btn"><b>다운로드</b></a>
+                </div>
+            </div>
+            <div th:if="${roleType == 'admin'}" class="container1">
+                <a href="#" th:href="@{/assignment/add?ordinal={ordinal} (ordinal = ${ordinal})}" class="button">등록</a>
+            </div>
+            <div th:if="${roleType == 'user'}" class="board_page">
+                <a href="#" th:href="@{/assignment?page=1}" class="bt first"><<</a>
+                <a href="#" th:href="@{/assignment?page={page} (page = ${pagination.prevBlock})}" class="bt prev"><</a>
+
+                <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                    <span th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}">
+                        <a href="#" th:href="@{/assignment?page={page} (page = ${pageButton})}" class="cnt" th:classappend="${currentPage} == ${pageButton} ? 'on'" th:text="${pageButton}">1</a>
+                    </span>
+                </th:block>
+
+                <a href="#" th:href="@{/assignment?page={page} (page = ${pagination.nextBlock})}"class="bt next">></a>
+                <a href="#" th:if="${totalPageCnt != 0}" th:href="@{/assignment?page={page} (page = ${pagination.totalPageCnt})}"class="bt last">>></a>
+                <a href="#" th:if="${totalPageCnt == 0}" th:href="@{/assignment?page={page} (page = '1')}"class="bt last">>></a>
+            </div>
+            <div th:if="${roleType == 'admin'}" class="board_page">
+                <a href="#" th:href="@{/assignment?page=1&ordinal={ordinal} (ordinal = ${ordinal})}" class="bt first"><<</a>
+                <a href="#" th:href="@{/assignment?page={page}&ordinal={ordinal} (page = ${pagination.prevBlock}, ordinal = ${ordinal})}" class="bt prev"><</a>
+
+                <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                    <span th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}">
+                        <a href="#" th:href="@{/assignment?page={page}&ordinal={ordinal} (page = ${pageButton}, ordinal = ${ordinal})}" class="cnt" th:classappend="${currentPage} == ${pageButton} ? 'on'" th:text="${pageButton}">1</a>
+                    </span>
+                </th:block>
+
+                <a href="#" th:href="@{/assignment?page={page}&ordinal={ordinal} (page = ${pagination.nextBlock}, ordinal = ${ordinal})}" class="bt next">></a>
+                <a href="#" th:if="${totalPageCnt != 0}" th:href="@{/assignment?page={page}&ordinal={ordinal} (page = ${pagination.totalPageCnt}, ordinal = ${ordinal})}" class="bt last">>></a>
+                <a href="#" th:if="${totalPageCnt == 0}" th:href="@{/assignment?page={page}&ordinal={ordinal} (page = '1', ordinal = ${ordinal})}" class="bt last">>></a>
+            </div>
+            </div>
+        </div>
+    </div>
+   
+
+</section>
+
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#home" th:href="@{/#home}"><b>Home</b></a>
+            <a href="#about" th:href="@{/#about}"><b>About</b></a>
+            <a href="#packages" th:href="@{/#packages}"><b>Video</b></a>
+            <a href="#shop" th:href="@{/#shop}"><b>두란노소식</b></a>
+            <a href="#reviews" th:href="@{/#reviews}"><b>공지사항</b></a>
+            <a href="#reviews" th:href="@{/members/edit}"><b>회원정보</b></a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 백OO 총괄</a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 김OO 12기 </a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 유OO 13기</a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 조OO 14기</a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 이OO 15기</a>
+        </div>
+
+        <div class="box">
+            <h3>Email Contact</h3>
+            <a href="mailto:durannobible@gmail.com"> <i class="fas fa-envelope"></i> durannobible@gmail.com </a>
+            <a href="mailto:durannobible@outlook.com"> <i class="fas fa-envelope"></i> durannobible@outlook.com </a>
+        </div>
+
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href=""> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href=""> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="https://www.youtube.com/@LeeChang"> <i class="fa-brands fa-youtube"></i> youtube </a>
+        </div>
+
+    </div>
+
+    <div class="credit">created by <span>Tyrannus Institute of The Biblical Theology</span> | all rights reserved!</div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/cc131ee4f9.js" crossorigin="anonymous"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js" th:src="@{/js/archive.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>임시 비밀번호 발급</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .field-error {
+        border-color: #10221b;
+        color: #10221b;
+      }
+      p {
+        border-color: #10221b;
+        color: #10221b;
+      }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="title-text">
+        <div class="title login">임시 비밀번호 발급</div>
+        <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+        <span th:text="${alert}"></span>
+        <div class="form-inner">
+            <form action="#" th:action th:object=${tempForm} class="login" method="post">
+                <div class="field">
+                    <input type="text" th:field="*{email}" placeholder="가입 시 등록한 이메일을 입력하세요." required>
+                    <div class="field-error" th:errors="*{email}" />
+                </div>
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p th:each="err : ${#fields.globalErrors}" th:text="${err}">글로벌 오류 메시지</p>
+                </div>
+                <div th:if="${alert == null}" class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="입력">
+                </div>
+                <div th:if="${alert != null}" class="field btn">
+                    <div class="btn-layer"></div>
+                    <span th:onclick="|location.href='@{/}'|">홈으로</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" th:href="@{/css/css.css}">
+</head>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>공지사항</strong>
+            <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title" th:text="${board.title}">
+                    글 제목이 들어갑니다.
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>번호</dt>
+                        <dd th:text="${num}">1</dd>
+                    </dl>
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>Admin</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd th:text="${board.localDate}">2021.1.16</dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd th:text="${board.cnt}">33</dd>
+                    </dl>
+                </div>
+                <div class="cont" th:text="${board.content}">
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다<br>
+                    글 내용이 들어갑니다
+                </div>
+            </div>
+            <div class="bt_wrap" th:if="${roleType == 'admin'}">
+                <button class="btn" type="button" th:onclick="|location.href='@{/boards/{boardId}/edit(boardId=${board.id})}'|">수정</button>
+                <button class="btn" type="button" th:onclick="|location.href='@{/boards/{boardId}/remove(boardId=${board.id})}'|">삭제</button>
+            </div>
+            <div class="bt_wrap" th:if="${roleType == 'user'}">
+                <button class="btn" type="button" th:onclick="|location.href='@{/#reviews}'|">목록</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>두란노 자료실</title>
+    <link rel="stylesheet" href="style.css" th:href="@{/css/archive.css}">
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap" rel="stylesheet"/>
+    <!-- Line Awesome CDN Link -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"/>
+  </head>
+  <body>
+    <div class="main-container">
+      <h2><b>자료실에 오신 것을 환영합니다!</b></h2>
+      <div class="radio-buttons">
+        <label class="custom-radio">
+          <input type="radio" name="radio" />
+          <span th:if="${roleType == 'admin'}" class="radio-btn" th:onclick="|location.href='@{/archive/select1}'|">
+            <i class="las la-check"></i>
+            <div class="hobbies-icon">
+            <i class="fa-regular fa-file-audio"></i>
+            <!-- <i class="las la-futbol"></i> -->
+            <h3><b>과제 파일</b></h3>
+            </div>
+          </span>
+          <span th:if="${roleType == 'user'}" class="radio-btn" th:onclick="|location.href='@{/assignment}'|">
+            <i class="las la-check"></i>
+            <div class="hobbies-icon">
+            <i class="fa-regular fa-file-audio"></i>
+              <!-- <i class="las la-futbol"></i> -->
+            <h3><b>과제 파일</b></h3>
+            </div>
+          </span>
+        </label>
+        <label class="custom-radio">
+          <input type="radio" name="radio" />
+          <span th:if="${roleType == 'admin'}" class="radio-btn" th:onclick="|location.href='@{/archive/select2}'|">
+            <i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="fa-sharp fa-solid fa-file-word"></i>  
+            <!-- <i class="las la-table-tennis"></i> -->
+            <h3><b>교재 파일</b></h3>
+            </div>
+          </span>
+          <span th:if="${roleType == 'user'}" class="radio-btn" th:onclick="|location.href='@{/textbook}'|">
+            <i class="las la-check"></i>
+            <div class="hobbies-icon">
+              <i class="fa-sharp fa-solid fa-file-word"></i>
+              <!-- <i class="las la-table-tennis"></i> -->
+            <h3><b>교재 파일</b></h3>
+            </div>
+          </span>
+        </label>
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/69dfbc7391.js" crossorigin="anonymous"></script>
+  </body>
+</html>

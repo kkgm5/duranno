@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .field-error {
+            border-color: #10221b;
+            color: #10221b;
+        }
+        p {
+            border-color: #10221b;
+            color: #10221b;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="title-text">
+        <div class="title signup">회원가입</div>
+        <div class="title login">Login Form</div>
+    </div>
+    <div class="form-container">
+        <div class="form-inner">
+            <form action="" class="login" th:action th:object=${member} method="post">
+                <div class="field">
+                    <select th:field="*{ordinalCode}">
+                        <option class="option" value="">기수 선택</option>
+                        <option th:each="ordinalCode : ${ordinalCodes}" th:value="${ordinalCode.code}"
+                                th:text="${ordinalCode.displayName}">12th</option>
+                    </select>
+                    <div class="field-error" th:errors="*{ordinalCode}" />
+                </div>
+                <div class="field">
+                    <input type="text" th:field="*{email}" placeholder="이메일 주소" required>
+                    <div class="field-error" th:errors="*{email}" />
+                </div>
+                <div class="field">
+                    <input type="password" th:field="*{password}" placeholder="패스워드" required>
+                    <div class="field-error" th:errors="*{password}" />
+                </div>
+                <div class="field">
+                    <input type="password" th:field="*{pwCheck}" placeholder="패스워드 확인" required>
+                    <div class="field-error" th:errors="*{pwCheck}" />
+                </div>
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p th:each="err : ${#fields.globalErrors}" th:text="${err}">글로벌 오류 메시지</p>
+                </div>
+                <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="회원가입"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

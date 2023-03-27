@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>회원정보 수정</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      p {
+          border-color: #fc83bb;
+          color: #fc83bb;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">비밀번호 변경</div>
+        <div class="title signup">Login Form</div>
+      </div>
+      <div class="form-container">
+        <div class="form-inner">
+          <form action="#" th:action th:object=${memberEditForm} class="login" method="post">
+            <div class="field">
+              <input type="password" placeholder="패스워드" required th:field="*{password}">
+            </div>
+            <div class="field">
+              <input type="password" placeholder="패스워드 확인" required th:field="*{pwCheck}">
+            </div>
+            <div th:if="${#fields.hasGlobalErrors()}">
+              <p th:each="err : ${#fields.globalErrors}" th:text="${err}">글로벌 오류 메시지</p>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="확인">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

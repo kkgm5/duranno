@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두란노성경신학연구원</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!--전주    -->
+    <link rel="stylesheet" href="css/css.css" th:href="@{/css/css.css}">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css" th:href="@{/css/home.css}">
+    <style>
+        .a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header class="header">
+
+    <a href="#" class="logo"> <i class="fa-solid fa-church"></i> 두란노성경신학연구원 </a>
+
+    <nav class="navbar">
+        <div id="nav-close" class="fas fa-times"> </div>
+        <a href="#home"><b>Home</b></a>
+        <a href="#about"><b>About</b></a>
+        <a href="#packages"><b>Video</b></a>
+        <a href="#shop"><b>두란노소식</b></a>
+        <a href="#reviews"><b>공지사항</b></a>
+        <a th:if="${sessionValue == null}" th:href="@{/login}"><b>로그인</b></a>
+        <a th:if="${sessionValue != null}" onclick="logout()" class="a"><b>로그아웃</b></a>
+    </nav>
+
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div id="search-btn" class="fas fa-search"></div>
+    </div>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- search form  -->
+
+<div class="search-form">
+
+    <div id="close-search" class="fas fa-times"></div>
+
+    <form action="">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+</div>
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="swiper home-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="box" style="background: url(images/home-bg-1.png) no-repeat;">
+                    <div class="content">
+                        <h3>말라기 4:2</h3>
+                        <p>내 이름을 경외하는 너희에게는 의로운 해가 떠올라서 치료의 광선을 비추리니 너희가 나가서 외양간에서 나온 송아지 같이 뛰리라</p>
+                        <a th:if="${sessionValue == null}" th:href="@{/login}" class="btn">로그인</a>
+                        <a th:if="${sessionValue != null}" th:href="@{/archive}" class="btn">자료실</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="box second" style="background: url(images/home-bg-2.png) no-repeat;">
+                    <div class="content">
+                        <h3>Malachi 4:2</h3>
+                        <p>But unto you that fear my name shall the Sun of righteousness arise with healing in his wings; and ye shall go forth, and grow up as calves of the stall.</p>
+                        <a th:if="${sessionValue == null}" th:href="@{/login}" class="btn">Login</a>
+                        <a th:if="${sessionValue != null}" th:href="@{/archive}" class="btn">Archive</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="box" style="background: url(images/home-bg-3.png) no-repeat;">
+                    <div class="content">
+                        <h3>창세기 1:1~3</h3>
+                        <p>태초에 하나님이 천지를 창조하시니라 땅이 혼돈하고 공허하며 흑암이 깊음 위에 있고 하나님의 영은 수면 위에 운행하시니라 하나님이 이르시되 빛이 있으라 하시니 빛이 있었고</p>
+                        <a th:if="${sessionValue == null}" th:href="@{/login}" class="btn">로그인</a>
+                        <a th:if="${sessionValue != null}" th:href="@{/archive}" class="btn">자료실</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+
+</section>
+
+
+<section class="about" id="about">
+
+    <div class="image">
+        <img src="images/about-img.jpg" th:src="@{/images/about-img_3.jpg}" alt="">
+    </div>
+
+    <div class="content">
+        <h3>두란노는 하나님의 뜰</h3>
+        <p><b>두란노란? 고대 수메르어로써 DU(마당, 뜰) RAN(of) No(신, 하나님) 하나님의 뜰(스가랴 3:7), 하나님의 마당. 즉, 두란노란 하나님이 임재해 계시는 하나님의 집, 성전, 교회, 여기서 하나님을 만날 것이다.</b></p>
+        <a href="#" class="btn">read more</a>
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- packages section starts  -->
+
+<section class="packages" id="packages">
+
+    <h1 class="heading">빛의 창조 시리즈</h1>
+<!--여기 heading을 heading1로 바꿔야됨-->
+    <div class="container">
+
+        <div class="main-video-container">
+            <iframe width="560" height="447" src="https://www.youtube.com/embed/iJZy0Ee3sU0" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture; web-share" id="main-video" loop controls class="main-video" allowfullscreen></iframe>
+            <h3 id="main-vid-title" class="main-vid-title">빛의 창조에 숨은 비밀 (1)</h3>
+        </div>
+
+        <div class="video-list-container">
+
+            <div id="class1" class="list active">
+                <img width="100" height="60" src="" th:src="@{/images/1.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (1)</h3>
+            </div>
+
+            <div id="class2" class="list">
+                <img width="110" height="60" src="" th:src="@{/images/2.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 구속사적 비밀 (2)</h3>
+            </div>
+
+            <div id="class3" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/3.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (3)</h3>
+            </div>
+
+            <div id="class4" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/4.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (4) 과정</h3>
+            </div>
+
+            <div id="class5" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/5.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (5) 아침</h3>
+            </div>
+
+            <div id="class6" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/6.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 구속사적 비밀 (6)</h3>
+            </div>
+
+            <div id="class7" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/7.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조 (7) 한반도의 아침은 어떻게 오나</h3>
+            </div>
+
+            <div id="class8" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/8.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (8) 왜 꼭 제7일을 주장하나</h3>
+            </div>
+
+            <div id="class9" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/9.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (9) 제7일과 첫째날 뭐가 다르나</h3>
+            </div>
+
+            <div id="class10" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/10.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (10) 안식일의 본질과 의미</h3>
+            </div>
+
+            <div id="class11" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/11.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (11) 안식일, 유월절, 주의 만찬</h3>
+            </div>
+
+            <div id="class12" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/12.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (12) 빛의 창조는 하나님의 의가 나타난 것</h3>
+            </div>
+
+            <div id="class13" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/13.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (13) 역사는 반복된다</h3>
+            </div>
+
+            <div id="class14" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/14.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (14) 아침은 종말론</h3>
+            </div>
+            <div id="class15" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/15.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (15) 하나님을 알되 바로 알아야</h3>
+            </div>
+
+            <div id="class16" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/16.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (16) 창조와 구속의 원리 (거룩)</h3>
+            </div>
+
+            <div id="class17" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/17.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조의 비밀 (17) 창조언약에 나타난 하나님의 의 / 이창구 박사</h3>
+            </div>
+
+            <div id="class18" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/18.png}" loading="lazy">
+                <h3 class="list-title">빛의 창조에 숨은 비밀 (18) 창조언약과 구속언약</h3>
+            </div>
+
+            <div id="class19" class="list">
+                <img width="100" height="60" src="" th:src="@{/images/18.png}" loading="lazy">
+                <h3 class="list-title">기독교는 체험의 종교다 - 하나님을 만나야</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="shop" id="shop">
+
+    <h1 class="heading">두란노 소식</h1>
+
+    <div class="swiper product-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="images/12기.jpg" th:src="@{/images/12기.jpg}" alt="" loading="lazy">
+
+                </div>
+                <div class="content">
+                    <!-- <h3>survival kits</h3> -->
+                    <div class="price"> 12기 </div>
+
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="images/13기.jpg" th:src="@{/images/13기.jpg}" alt="" loading="lazy">
+
+                </div>
+                <div class="content">
+                    <!-- <h3>survival kits</h3> -->
+                    <div class="price"> 13기 </div>
+
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="images/14기.jpg" th:src="@{/images/14기.jpg}" alt="" loading="lazy">
+                </div>
+                <div class="content">
+                    <!-- <h3>survival kits</h3> -->
+                    <div class="price"> 14기 </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="images/15기.jpg" th:src="@{/images/15기.jpg}" alt="" loading="lazy">
+                </div>
+                <div class="content">
+                    <!-- <h3>survival kits</h3> -->
+                    <div class="price"> 15기 </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+
+</section>
+
+<!-- shop section ends -->
+
+<!-- reviews section starts  -->
+
+<section class="reviews" id="reviews">
+
+    <h1 class="heading">공지사항</h1>
+
+    <div class="board_wrap">
+        <div class="board_title">
+        </div>
+        <div class="board_list_wrap">
+            <div class="board_list">
+                <div class="top">
+                    <div class="num">번호</div>
+                    <div class="title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="date">작성일</div>
+                    <div class="count">조회</div>
+                </div>
+                <div th:each="board, boardStat : ${boardList}">
+                    <div class="num" th:text="${boardStat.size} - ${boardStat.index} - (${pagination.pageSize} - ${remainder}) + (${pagination.totalPageCnt} - ${currentPage}) * 5">5</div>
+                    <div class="title" th:with="num=${boardStat.size} - ${boardStat.index} - (${pagination.pageSize} - ${remainder}) + (${pagination.totalPageCnt} - ${currentPage}) * 5">
+                        <a href="view.html" class="underline" th:text="${board.title}" th:href="@{/boards/{boardId}(boardId=${board.id}, num=${num})}">글 제목이 들어갑니다.</a></div>
+                    <div class="writer" th:text="admin">김이름</div>
+                    <div class="date" th:text="${board.localDate}">2021.1.15</div>
+                    <div class="count" th:text="${board.cnt}">33</div>
+                </div>
+            </div>
+            <div th:if="${roleType == 'admin'}" class="container1">
+                <a href="#" th:href="@{/board}" class="button">등록</a>
+            </div>
+            <div class="board_page">
+                <a href="#" th:href="@{/?page=1#reviews}" class="bt first"><<</a>
+                <a href="#" th:href="@{/?page={page}#reviews (page = ${pagination.prevBlock})}"class="bt prev"><</a>
+                <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                    <span th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}">
+                        <a href="#" th:href="@{/?page={page}#reviews (page = ${pageButton})}" class="cnt" th:classappend="${currentPage} == ${pageButton} ? 'on'" th:text="${pageButton}">1</a>
+                    </span>
+                </th:block>
+                <a href="#" th:href="@{/?page={page}#reviews (page = ${pagination.nextBlock})}" class="bt next">></a>
+                <a href="#" th:if="${pagination.totalPageCnt != 0}" th:href="@{/?page={page}#reviews (page = ${pagination.totalPageCnt})}" class="bt last">>></a>
+                <a href="#" th:if="${pagination.totalPageCnt == 0}" th:href="@{/?page={page}#reviews (page = '1')}" class="bt last">>></a>
+            </div>
+<!--            <div class="bt_wrap">-->
+<!--                <a href="write.html" class="on">등록</a>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+</section>
+
+<!-- reviews section ends -->
+
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#home" th:href="@{/#home}"><b>Home</b></a>
+            <a href="#about" th:href="@{/#about}"><b>About</b></a>
+            <a href="#packages" th:href="@{/#packages}"><b>Video</b></a>
+            <a href="#shop" th:href="@{/#shop}"><b>두란노소식</b></a>
+            <a href="#reviews" th:href="@{/#reviews}"><b>공지사항</b></a>
+            <a href="#reviews" th:href="@{/members/edit}"><b>회원정보</b></a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 백OO 총괄</a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 김OO 12기 </a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 유OO 13기</a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 조OO 14기</a>
+            <a href="tel:010-0000-0000"> <i class="fas fa-phone"></i> 010-0000-0000 이OO 15기</a>
+        </div>
+
+        <div class="box">
+            <h3>Email Contact</h3>
+            <a href="mailto:duranno_test@gmail.com"> <i class="fas fa-envelope"></i> duranno_test@gmail.com </a>
+            <a href="mailto:duranno_test@outlook.com"> <i class="fas fa-envelope"></i> duranno_test@outlook.com </a>
+        </div>
+
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href=""> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href=""> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="https://www.youtube.com/@LeeChang"> <i class="fa-brands fa-youtube"></i> youtube </a>
+        </div>
+
+    </div>
+
+    <div class="credit">created by <span>Tyrannus Institute of The Biblical Theology</span> | all rights reserved!</div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/cc131ee4f9.js" crossorigin="anonymous"></script>
+
+<!-- custom js file link  -->
+<script src="js/home.js" th:src="@{/js/home.js}"></script>
+<script>
+ function logout(){
+ let f = document.createElement('form');
+ f.setAttribute('method', 'post');
+ f.setAttribute('action', '/logout');
+ document.body.appendChild(f);
+ f.submit();
+ }
+</script>
+
+</body>
+</html>

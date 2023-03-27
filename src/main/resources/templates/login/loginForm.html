@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      p {
+          border-color: #fc83bb;
+          color: #fc83bb;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">로그인</div>
+        <div class="title signup">Signup Form</div>
+      </div>
+      <div class="form-container">
+        <div class="form-inner">
+          <form action="#" th:action th:object=${loginForm} class="login" method="post">
+            <div class="field">
+              <input type="text" placeholder="이메일 주소" required th:field="*{loginEmail}">
+            </div>
+            <div class="field">
+              <input type="password" placeholder="패스워드" required th:field="*{password}">
+            </div>
+            <div class="pass-link"><a href="#" th:href="@{/members/temp}">패스워드 분실?</a></div>
+            <div th:if="${#fields.hasGlobalErrors()}">
+              <p th:each="err : ${#fields.globalErrors}" th:text="${err}">글로벌 오류 메시지</p>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="로그인">
+            </div>
+            <div class="signup-link">Not a member? <a onclick="" th:onclick="|location.href='@{/members/add}'|">회원가입</a></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
