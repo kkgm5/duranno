@@ -18,7 +18,7 @@
 
 ![a3](https://user-images.githubusercontent.com/103418153/227928426-300d2bb2-1457-4a74-941c-69f7e0e4b88b.gif)
  
-  3-1. 관리자는 모든 기수의 자료실에 접근이 가능하고, 일반 사용자는 자신의 기수의 자료실에만 접근이 가능
+  3-1. 관리자는 모든 기수의 자료실에 접근이 가능하고, 일반 사용자는 자신의 기수의 자료실에만 접근 가능
 ``` 
 @GetMapping
 public String assignment(@Login SessionValue sessionValue,
