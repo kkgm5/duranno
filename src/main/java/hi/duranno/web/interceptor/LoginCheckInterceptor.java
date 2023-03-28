@@ -40,7 +40,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         SessionValue sessionValue = (SessionValue) session.getAttribute(SessionConst.LOGIN_MEMBER);
 
 
-        //일반 사용자(USER) 공지사항, 과제, 교재 등록, 수정, 삭제 URL 접근 제어
+        //일반 사용자(USER) 등록, 수정, 삭제 URL 접근 제어 (공지사항, 과제/교재)
         if (sessionValue != null) {
 
             if (sessionValue.getRoleType() == RoleType.USER && requestURI.contains("assignment/add")) {
@@ -50,6 +50,11 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
             if (sessionValue.getRoleType() == RoleType.USER && requestURI.contains("textbook/add")) {
                 response.sendRedirect("/textbook");
+                return false;
+            }
+            
+            if (sessionValue.getRoleType() == RoleType.USER && requestURI.contains("board")) {
+                response.sendRedirect("/#reviews");
                 return false;
             }
 
