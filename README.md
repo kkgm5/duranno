@@ -15,7 +15,7 @@
  2-1. 관리자의 경우에만 공지사항 등록 버튼 존재
  ```
  <div th:if="${roleType == 'admin'}">
-  <a href="#" th:href="@{/board}" class="button">등록</a>
+  <a th:href="@{/board}" class="button">등록</a>
  </div>
  ```
 
