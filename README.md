@@ -23,7 +23,8 @@
 
 3. 기수별 자료실
 
-![a3](https://user-images.githubusercontent.com/103418153/227928426-300d2bb2-1457-4a74-941c-69f7e0e4b88b.gif)
+![a3](https://user-images.githubusercontent.com/103418153/231197640-390915ad-2ccc-4a91-b034-fa17658c7f9d.gif)
+
  
   3-1. 관리자는 모든 기수의 자료실에 접근이 가능하고, 일반 사용자는 자신의 기수의 자료실에만 접근 가능
   ``` 
